@@ -19,24 +19,30 @@ const LogoGrid = () => {
   ];
 
   return (
-    <div className="w-full bg-white flex flex-col items-center justify-center py-12 px-4 space-y-10">
+    <section className="w-full bg-white flex flex-col items-center justify-center py-16 sm:py-24 px-4">
       {/* --- Heading --- */}
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">My Skills</h2>
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-12 tracking-tight">
+        My Skills
+      </h2>
 
-      {/* --- Top Row: 5 items --- */}
-      <div className="flex justify-center flex-wrap gap-10">
-        {items.slice(0, 5).map((item, index) => (
+      {/* --- Responsive Grid Layout --- */}
+      <div
+        className="
+          grid 
+          grid-cols-2 
+          sm:grid-cols-3 
+          md:grid-cols-4 
+          lg:grid-cols-5 
+          gap-6 sm:gap-8 md:gap-10
+          justify-items-center
+          w-full max-w-7xl
+        "
+      >
+        {items.map((item, index) => (
           <LogoCard key={index} item={item} />
         ))}
       </div>
-
-      {/* --- Bottom Row: 5 items --- */}
-      <div className="flex justify-center flex-wrap gap-10">
-        {items.slice(5, 10).map((item, index) => (
-          <LogoCard key={index} item={item} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 
@@ -45,10 +51,13 @@ const LogoCard = ({ item }) => {
   return (
     <div
       className="
-        relative w-[180px] h-[180px] md:w-[160px] md:h-[160px] sm:w-[140px] sm:h-[140px]
+        relative
+        w-[140px] h-[140px]
+        sm:w-[160px] sm:h-[160px]
+        md:w-[180px] md:h-[180px]
         flex flex-col items-center justify-center
         cursor-pointer overflow-hidden
-        bg-white
+        bg-white rounded-xl
         transition-all duration-500 ease-out
         hover:shadow-[0_8px_25px_rgba(0,0,0,0.25)]
         group
@@ -58,9 +67,8 @@ const LogoCard = ({ item }) => {
       <Image
         src={item.border}
         alt={`${item.alt} border`}
-        width={180}
-        height={180}
-        className="absolute inset-0 z-0"
+        fill
+        className="absolute inset-0 object-cover z-0"
       />
 
       {/* Hover Overlay */}
